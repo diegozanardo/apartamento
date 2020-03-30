@@ -1,0 +1,3 @@
+docker run -d -p 27017:27017 --name m1 mongo
+
+docker rm m1 -f
