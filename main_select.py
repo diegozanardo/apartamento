@@ -38,7 +38,7 @@ if __name__ == '__main__':
     else:
         similares = []
         result = {}
-        keys = ['id_vivareal', 'createdAt', 'updatedAt', 'updated', 'address.locationId', 'totalAreas', 'price', 'price_version', 'link.href']
+        keys = ['id_vivareal', 'createdAt', 'updatedAt', 'updated', 'address.locationId', 'totalAreas', 'price', 'price_version', 'link.href', 'removed']
         
         result = convert(apartaments, keys)
 
