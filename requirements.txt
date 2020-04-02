@@ -1,2 +1,2 @@
 pymongo
-ImageHash=="4.0"
+ImageHash
