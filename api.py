@@ -2,7 +2,7 @@ import requests
 
 class Api():
     price_from = 400000
-    price_to = ''
+    price_to = 750000
 
     def call_api(self, size, start):
         headers = {
@@ -14,43 +14,47 @@ class Api():
             'origin': 'https://www.vivareal.com.br',
             'sec-fetch-site': 'cross-site',
             'sec-fetch-mode': 'cors',
-            'referer': 'https://www.vivareal.com.br/venda/sp/campinas/bairros/parque-prado/com-varanda-gourmet/',
+            'referer': 'https://www.vivareal.com.br/venda/sp/campinas/apartamento_residencial/com-varanda-gourmet/',
             'accept-language': 'pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7',
         }
 
         params = (
             ('addressCity', 'Campinas'),
-            ('addressLocationId', 'BR>Sao Paulo>NULL>Campinas>Barrios>Parque Prado'),
-            ('addressNeighborhood', 'Parque Prado'),
+            ('addressLocationId', 'BR>Sao Paulo>NULL>Campinas'),
+            ('addressNeighborhood', ''),
             ('addressState', 'S\xE3o Paulo'),
-            ('addressCountry', 'Brasil'),
+            ('addressCountry', 'BR'),
             ('addressStreet', ''),
-            ('addressZone', 'Bairros'),
-            ('addressPointLat', '-22.943108'),
-            ('addressPointLon', '-47.04249'),
+            ('addressZone', ''),
+            ('addressPointLat', '-22.909938'),
+            ('addressPointLon', '-47.062633'),
             ('amenities', 'GOURMET_BALCONY'),
             ('business', 'SALE'),
             ('facets', 'amenities'),
             ('unitTypes', 'APARTMENT'),
-            ('unitSubTypes', ''),
-            ('unitTypesV3', ''),
-            ('usageTypes', ''),
+            ('unitSubTypes', 'UnitSubType_NONE,DUPLEX,LOFT,STUDIO,TRIPLEX'),
+            ('unitTypesV3', 'APARTMENT'),
+            ('usageTypes', 'RESIDENTIAL'),
             ('priceMin', str(self.price_from)),
             ('priceMax', str(self.price_to)),
             ('listingType', 'USED'),
             ('parentId', 'null'),
             ('categoryPage', 'RESULT'),
-            ('includeFields', 'page,search,expansion,nearby,fullUriFragments,account,facets'),
+            ('includeFields', 'page,search,expansion,nearby,fullUriFragments,account,facets,developments'),
             ('size', size),
             ('from', start),
-            ('sort', 'pricingInfos.price DESC sortFilter:pricingInfos.businessType=\'SALE\''),
             ('q', ''),
             ('developmentsSize', '5'),
             ('__vt', ''),
         )
 
         response = requests.get('https://glue-api.vivareal.com/v2/listings', headers=headers, params=params)
-
+        print(response)
+            
+        while(response.status_code != 200):
+            print(response)
+            response = requests.get('https://glue-api.vivareal.com/v2/listings', headers=headers, params=params)    
+        
         return response.json()
 
     def get_vivareal(self):
