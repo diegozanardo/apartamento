@@ -1,2 +1,2 @@
-pymongo=="3.10.1"
-ImageHash=="4.0'
+pymongo
+ImageHash
