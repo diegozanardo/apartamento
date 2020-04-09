@@ -31,12 +31,12 @@ def convert(d, keys):
 if __name__ == '__main__':
     apartmentService = ApartmentService()
 
-    apartaments = apartmentService.get_all({'id_vivareal': '2454100925'})[0]
+    apartaments = apartmentService.get_all({'id_vivareal': '2464774082'})[0]
 
     if apartaments is None:
         print('Not found')
     else:
-        similares = []
+        print(apartaments)
         result = {}
         keys = ['id_vivareal', 'createdAt', 'updatedAt', 'updated', 'address.locationId', 'totalAreas', 'price', 'price_version', 'link.href', 'removed']
         

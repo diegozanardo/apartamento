@@ -3,7 +3,7 @@ from bson import ObjectId
 from datetime import datetime
 
 class ApartmentDb():
-    client = pymongo.MongoClient("mongodb://localhost:27017/")
+    client = pymongo.MongoClient("mongodb://192.168.0.17:27017/")
     db = client["propertiesdb"]
     collection = db["apartment"]
 

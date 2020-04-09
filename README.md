@@ -36,4 +36,9 @@ pip3 install python-dateutil
 tail -f /var/log/syslog | grep CRON
 ls -lah
 
+# ssh
 
+scp ubuntu@192.168.0.17:/home/ubuntu/apartamento/data.txt /home/dzanardo/github/apartamento/data/data.txt
+
+
+sshfs ubuntu@192.168.0.17:/home/ubuntu/apartamento/images /home/dzanardo/github/apartamento/images_remote
