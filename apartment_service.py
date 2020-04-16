@@ -48,8 +48,12 @@ class ApartmentService():
         self.apartament_db.save(apartment)
 
     def __download_images(self, apartment):
+        images = []
         for media in apartment['medias']:
-            media['new_url'] = self.img.download(media['url'])
+            if media['type'] == "IMAGE":
+                images.append(self.img.download(media['url']))
+        
+        apartment['images'] = images
 
     def __create_one(self, document):
         self.__download_images(document)
