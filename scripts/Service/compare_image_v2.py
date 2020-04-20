@@ -114,4 +114,4 @@ class CompareImageV2():
                 'updatedAt', 'address', 'totalAreas', 'status', 'price',
                 'updated', 'lon', 'lat', 'dist']
 
-        return df_filtered2[(cols)].to_json()
+        return df_filtered2[(cols)].to_csv('similares.csv', sep=',', encoding='utf-8')

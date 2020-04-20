@@ -9,7 +9,7 @@ from os.path import isfile, join
 
 class Image():
 
-    IMGFOLDER = '/home/dzanardo/github/apartamento/images/'
+    IMGFOLDER = '/home/ubuntu/apartamento/images/'
     FILES = ''
     __IMAGES = {}
 
