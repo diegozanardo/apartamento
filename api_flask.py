@@ -1,6 +1,8 @@
 from flask import Flask
+from compare_image_v2 import CompareImageV2
+
 app = Flask(__name__)
 
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
+@app.route('/similares/<id>')
+def similares(id):
+    return CompareImageV2().get_similares(id)
