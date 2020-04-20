@@ -1,3 +1,6 @@
+import sys
+sys.path.append('../')
+
 from apartment_service import ApartmentService
 from Service.api import Api
 

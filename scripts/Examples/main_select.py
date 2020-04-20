@@ -1,3 +1,6 @@
+import sys
+sys.path.append('../')
+
 from Service.apartment_service import ApartmentService
 import json
 from bson import ObjectId

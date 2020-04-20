@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import json
 from Database.image_db import ImageDb
 from Database.apartament_db import ApartmentDb
 
@@ -114,4 +115,4 @@ class CompareImageV2():
                 'updatedAt', 'address', 'totalAreas', 'status', 'price',
                 'updated', 'lon', 'lat', 'dist']
 
-        return df_filtered2[(cols)].to_csv('similares.csv', sep=',', encoding='utf-8')
+        return json.dumps(df_filtered2[(cols)].to_dict(orient='list'))
