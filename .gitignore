@@ -27,6 +27,7 @@ share/python-wheels/
 *.egg
 MANIFEST
 images/
+images_compare/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
