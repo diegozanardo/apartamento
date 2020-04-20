@@ -1,4 +1,4 @@
-from compare_image_v2 import CompareImageV2
+from Service.compare_image_v2 import CompareImageV2
 
 
 if __name__ == '__main__':

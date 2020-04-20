@@ -1,4 +1,4 @@
-from apartment_service import ApartmentService
+from Service.apartment_service import ApartmentService
 import json
 from bson import ObjectId
 

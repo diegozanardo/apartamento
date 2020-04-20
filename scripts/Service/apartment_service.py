@@ -2,9 +2,9 @@ from datetime import datetime
 import os
 from urllib.parse import urlparse
 import datetime
-from image import Image
+from Service.image import Image
 from bson import ObjectId
-from apartament_db import ApartmentDb
+from Database.apartament_db import ApartmentDb
 
 class ApartmentService():
     apartament_db = ApartmentDb()

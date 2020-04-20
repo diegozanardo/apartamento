@@ -1,5 +1,5 @@
 
-from apartment_service import ApartmentService
+from Service.apartment_service import ApartmentService
 from dateutil.parser import parse
 from image import Image
 

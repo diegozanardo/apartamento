@@ -1,5 +1,5 @@
 from flask import Flask
-from compare_image_v2 import CompareImageV2
+from Service.compare_image_v2 import CompareImageV2
 
 app = Flask(__name__)
 

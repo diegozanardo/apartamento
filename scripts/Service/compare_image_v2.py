@@ -1,8 +1,7 @@
 import pandas as pd
-from pymongo import MongoClient
 import numpy as np
-from image_db import ImageDb
-from apartament_db import ApartmentDb
+from Database.image_db import ImageDb
+from Database.apartament_db import ApartmentDb
 
 import imagehash
 import PIL

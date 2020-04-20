@@ -1,4 +1,4 @@
-from apartment_service import ApartmentService
+from Service.apartment_service import ApartmentService
 import io, json
 from bson import ObjectId
 from bson.json_util import dumps

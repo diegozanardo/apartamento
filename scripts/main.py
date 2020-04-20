@@ -1,5 +1,5 @@
-from apartment_service import ApartmentService
-from api import Api
+from Service.apartment_service import ApartmentService
+from Service.api import Api
 
 if __name__ == '__main__':
     apartment = ApartmentService()
