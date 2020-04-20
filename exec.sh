@@ -1,2 +1,2 @@
 #!/bin/sh
-python3 /home/ubuntu/apartamento/script/main.py
+python3 /home/ubuntu/apartamento/scripts/main.py
