@@ -32,6 +32,9 @@ https://github.com/GabrielRF/Docker-MongoDB-RPi/blob/master/Dockerfile
 
 pip3 install pymongo==3.4.0
 pip3 install python-dateutil
+sudo pip3 install pandas
+
+
 
 tail -f /var/log/syslog | grep CRON
 ls -lah

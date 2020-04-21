@@ -4,7 +4,7 @@ from datetime import datetime
 
 class ImageDb():
     client = pymongo.MongoClient("mongodb://localhost:27017/")
-    db = client["propertiesdb"]
+    db = client["apartamentdb"]
     collection = db["image"]
     def save(self, image):
         if not '_id' in image:

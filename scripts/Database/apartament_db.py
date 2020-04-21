@@ -4,7 +4,7 @@ from datetime import datetime
 
 class ApartmentDb():
     client = pymongo.MongoClient("mongodb://localhost:27017/")
-    db = client["propertiesdb"]
+    db = client["apartamentdb"]
     collection = db["apartment"]
 
     def save(self, apartment, updated_date = True):
