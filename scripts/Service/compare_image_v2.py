@@ -10,7 +10,7 @@ import PIL
 
 class CompareImageV2():
     apartament_db = ApartmentDb()
-    IMGFOLDER = '/home/dzanardo/github/apartamento/images/'
+    IMGFOLDER = '/home/ubuntu/apartamento/images/'
     CUTOFF = 5
     URL_VIVAREAL = 'https://www.vivareal.com.br'
 
@@ -53,16 +53,13 @@ class CompareImageV2():
             for m in row['images']:
                 imgDb = imageDb.get_one({"image": m})
                 if imgDb is None:
-                    try:
-                        file_name = self.IMGFOLDER + m
-                        img = PIL.Image.open(file_name)
+                    file_name = self.IMGFOLDER + m
+                    img = PIL.Image.open(file_name)
 
-                        img_hash = imagehash.average_hash(img)
-                        images[m] = img_hash
-                        newImg = {"image": m, "image_hash": str(img_hash)}
-                        imageDb.save(newImg)
-                    except:
-                        pass
+                    img_hash = imagehash.average_hash(img)
+                    images[m] = img_hash
+                    newImg = {"image": m, "image_hash": str(img_hash)}
+                    imageDb.save(newImg)
                 else:
                     images[imgDb['image']] = imagehash.hex_to_hash(imgDb['image_hash'])
 
@@ -73,7 +70,6 @@ class CompareImageV2():
             count_s = 0
             count_medias = 0
             for m in row['images']:
-                print(m)
                 if m in images:
                     count_medias += 1
                     for im in item['images'].values[0]:
