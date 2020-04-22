@@ -6,11 +6,11 @@ from Database.apartament_db import ApartmentDb
 
 import imagehash
 import PIL
-
+import os
 
 class CompareImageV2():
     apartament_db = ApartmentDb()
-    IMGFOLDER = '/home/ubuntu/apartamento/images/'
+    IMGFOLDER = os.environ["IMAGES_FOLDER"]
     CUTOFF = 5
     URL_VIVAREAL = 'https://www.vivareal.com.br'
 

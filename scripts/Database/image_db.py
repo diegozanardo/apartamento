@@ -1,10 +1,15 @@
 import pymongo
 from bson import ObjectId
 from datetime import datetime
+import os
+import json
 
 class ImageDb():
-    client = pymongo.MongoClient("mongodb://localhost:27017/")
-    db = client["apartamentdb"]
+    credentials = json.loads(os.environ["DATABASE_APARTAMENT"].replace(r"\"", '"'))
+
+    client = pymongo.MongoClient(credentials['server'])
+    db = client[credentials['db']]
+
     collection = db["image"]
     def save(self, image):
         if not '_id' in image:

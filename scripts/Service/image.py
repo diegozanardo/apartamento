@@ -9,7 +9,8 @@ from os.path import isfile, join
 
 class Image():
 
-    IMGFOLDER = '/home/ubuntu/apartamento/images/'
+    IMGFOLDER = os.environ["IMAGES_FOLDER"]
+    
     FILES = ''
     __IMAGES = {}
 

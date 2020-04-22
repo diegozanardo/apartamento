@@ -45,3 +45,9 @@ scp ubuntu@192.168.0.17:/home/ubuntu/apartamento/data.txt /home/dzanardo/github/
 
 
 sshfs ubuntu@192.168.0.17:/home/ubuntu/apartamento/images /home/dzanardo/github/apartamento/images_remote
+
+
+# env vars
+export DATABASE_APARTAMENT='{"server": "mongodb://localhost:27017/", "db": "apartamentdb"}'
+
+export IMAGES_FOLDER='/home/ubuntu/apartamento/images/'
