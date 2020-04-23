@@ -66,18 +66,28 @@ class CompareImageV2():
         return images
 
     def handle_similar(self, df_filtered, item):
+        hashes = {}
+
         for index, row in df_filtered.iterrows():
             count_s = 0
             count_medias = 0
             for m in row['images_hash']:
                 count_medias += 1
+                hashe = imagehash.hex_to_hash(m)
+                idx = 0
                 for im in item['images_hash'].values[0]:
-                    if (m - im) < self.CUTOFF:
+                    if not idx in hashes:
+                        hashes[idx] = imagehash.hex_to_hash(im)
+
+                    if (hashe - hashes[idx]) < self.CUTOFF:
                         count_s += 1
                         break
+
+                    idx += 1
                         
             df_filtered.loc[index,'count_similar'] = count_s
             df_filtered.loc[index,'count_medias'] = count_medias
+
 
     def prepare_data(self, df):
         df['point'] = df['address'].apply(lambda v: v.get('point') if isinstance(v, dict) else '')
