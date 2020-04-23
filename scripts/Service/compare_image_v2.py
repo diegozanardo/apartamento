@@ -67,6 +67,8 @@ class CompareImageV2():
 
     def handle_similar(self, df_filtered, item):
         hashes = {}
+        time1 = 0
+        time2 = 0
         import timeit
 
         for index, row in df_filtered.iterrows():
