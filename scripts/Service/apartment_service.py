@@ -53,6 +53,8 @@ class ApartmentService():
         for media in apartment['medias']:
             if media['type'] == "IMAGE":
                 img = self.img.download(media['url'])
+                if img is None:
+                    continue
                 images.append(img)
                 images_hash.append(str(self.img.get_hash(img)))
         
