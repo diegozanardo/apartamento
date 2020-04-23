@@ -22,6 +22,11 @@ class Image():
         for file in self.FILES:
             self.__IMAGES[str(file.split('_')[1:2][0])] = str(file)
         
+    def get_hash(self, image):
+        file_name = self.IMGFOLDER + image
+        img = PIL.Image.open(file_name)
+        return imagehash.average_hash(img)
+    
     def download(self, url):
         headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
         url = url.replace('{action}', 'crop').replace('{width}', '360').replace('{height}', '240')

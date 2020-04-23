@@ -49,10 +49,14 @@ class ApartmentService():
 
     def __download_images(self, apartment):
         images = []
+        images_hash = []
         for media in apartment['medias']:
             if media['type'] == "IMAGE":
-                images.append(self.img.download(media['url']))
+                img = self.img.download(media['url'])
+                images.append(img)
+                images_hash.append(str(self.img.get_hash(img)))
         
+        apartment['images_hash'] = images_hash
         apartment['images'] = images
 
     def __create_one(self, document):
