@@ -67,23 +67,14 @@ class CompareImageV2():
 
     def handle_similar(self, df_filtered, item):
         hashes = {}
-        time1 = 0
-        time2 = 0
-        import timeit
-
         for index, row in df_filtered.iterrows():
             count_s = 0
             count_medias = 0
             for m in row['images_hash']:
-                start = timeit.default_timer()
                 count_medias += 1
                 hashe = imagehash.hex_to_hash(m)
-                idx = 0
-                stop = timeit.default_timer()
-                time1 += (stop - start)
-
+                idx = 0                
                 for im in item['images_hash'].values[0]:
-                    start = timeit.default_timer()
                     if not idx in hashes:
                         hashes[idx] = imagehash.hex_to_hash(im)
 
@@ -91,15 +82,10 @@ class CompareImageV2():
                         count_s += 1
                         break
 
-                    stop = timeit.default_timer()
-                    time2 += (stop - start)
-
                     idx += 1
                         
             df_filtered.loc[index,'count_similar'] = count_s
             df_filtered.loc[index,'count_medias'] = count_medias
-
-            print(time1, time2)
 
 
     def prepare_data(self, df):
@@ -129,4 +115,4 @@ class CompareImageV2():
                 'updatedAt', 'address', 'totalAreas', 'status', 'price',
                 'updated', 'lon', 'lat', 'dist']
 
-        #return json.dumps(df_filtered2[(cols)].to_dict(orient='list'))
+        return json.dumps(df_filtered2[(cols)].to_dict(orient='list'))
