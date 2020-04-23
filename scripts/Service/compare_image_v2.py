@@ -100,14 +100,30 @@ class CompareImageV2():
         df['dist'] = self.haversine_np(lat, log, df['lat'], df['lon'])
 
     def get_similares(self, id):
+        import timeit
+
+        start = timeit.default_timer()
+        
         df = self.read_mongo()
+
+        stop = timeit.default_timer()
+        print('Time: ', stop - start)  
+        start = timeit.default_timer()
         
         self.prepare_data(df)
 
+        stop = timeit.default_timer()
+        print('Time: ', stop - start)  
+        start = timeit.default_timer()
         item = df[(df.id_vivareal == '2454100925')]
+
         self.calculate_distance(df, item['lat'].values[0], item['lon'].values[0])
 
         df_filtered = df[(df.dist <= 1)].copy()
+
+        stop = timeit.default_timer()
+        print('Time: ', stop - start)  
+        start = timeit.default_timer()
 
         self.handle_similar(df_filtered, item)
 
@@ -118,4 +134,8 @@ class CompareImageV2():
                 'updatedAt', 'address', 'totalAreas', 'status', 'price',
                 'updated', 'lon', 'lat', 'dist']
 
-        return json.dumps(df_filtered2[(cols)].to_dict(orient='list'))
+
+        stop = timeit.default_timer()
+
+        print('Time: ', stop - start)  
+        #return json.dumps(df_filtered2[(cols)].to_dict(orient='list'))
