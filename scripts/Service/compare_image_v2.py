@@ -67,15 +67,21 @@ class CompareImageV2():
 
     def handle_similar(self, df_filtered, item):
         hashes = {}
+        import timeit
 
         for index, row in df_filtered.iterrows():
             count_s = 0
             count_medias = 0
             for m in row['images_hash']:
+                start = timeit.default_timer()
                 count_medias += 1
                 hashe = imagehash.hex_to_hash(m)
                 idx = 0
+                stop = timeit.default_timer()
+                time1 += (stop - start)
+
                 for im in item['images_hash'].values[0]:
+                    start = timeit.default_timer()
                     if not idx in hashes:
                         hashes[idx] = imagehash.hex_to_hash(im)
 
@@ -83,10 +89,15 @@ class CompareImageV2():
                         count_s += 1
                         break
 
+                    stop = timeit.default_timer()
+                    time2 += (stop - start)
+
                     idx += 1
                         
             df_filtered.loc[index,'count_similar'] = count_s
             df_filtered.loc[index,'count_medias'] = count_medias
+
+            print(time1, time2)
 
 
     def prepare_data(self, df):
@@ -100,30 +111,12 @@ class CompareImageV2():
         df['dist'] = self.haversine_np(lat, log, df['lat'], df['lon'])
 
     def get_similares(self, id):
-        import timeit
-
-        start = timeit.default_timer()
-        
         df = self.read_mongo()
 
-        stop = timeit.default_timer()
-        print('Time: ', stop - start)  
-        start = timeit.default_timer()
-        
         self.prepare_data(df)
-
-        stop = timeit.default_timer()
-        print('Time: ', stop - start)  
-        start = timeit.default_timer()
         item = df[(df.id_vivareal == '2454100925')]
-
         self.calculate_distance(df, item['lat'].values[0], item['lon'].values[0])
-
         df_filtered = df[(df.dist <= 1)].copy()
-
-        stop = timeit.default_timer()
-        print('Time: ', stop - start)  
-        start = timeit.default_timer()
 
         self.handle_similar(df_filtered, item)
 
@@ -134,8 +127,4 @@ class CompareImageV2():
                 'updatedAt', 'address', 'totalAreas', 'status', 'price',
                 'updated', 'lon', 'lat', 'dist']
 
-
-        stop = timeit.default_timer()
-
-        print('Time: ', stop - start)  
         #return json.dumps(df_filtered2[(cols)].to_dict(orient='list'))
