@@ -65,18 +65,16 @@ class CompareImageV2():
 
         return images
 
-    def handle_similar(self, df_filtered, item, images):
+    def handle_similar(self, df_filtered, item):
         for index, row in df_filtered.iterrows():
             count_s = 0
             count_medias = 0
-            for m in row['images']:
-                if m in images:
-                    count_medias += 1
-                    for im in item['images'].values[0]:
-                        if im in images:           
-                            if (images[m] - images[im]) < self.CUTOFF:
-                                count_s += 1
-                                break
+            for m in row['images_hash']:
+                count_medias += 1
+                for im in item['images_hash'].values[0]:
+                    if (m - im) < self.CUTOFF:
+                        count_s += 1
+                        break
                         
             df_filtered.loc[index,'count_similar'] = count_s
             df_filtered.loc[index,'count_medias'] = count_medias
@@ -101,8 +99,7 @@ class CompareImageV2():
 
         df_filtered = df[(df.dist <= 1)].copy()
 
-        images = self.load_images(df_filtered)
-        self.handle_similar(df_filtered, item, images)
+        self.handle_similar(df_filtered, item)
 
         df_filtered2 = df_filtered[(df_filtered.count_similar > 1)]
         df_filtered2 = df_filtered2.sort_values(by=['count_similar'], ascending=False)
