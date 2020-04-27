@@ -102,7 +102,7 @@ class CompareImageV2():
         df = self.read_mongo()
 
         self.prepare_data(df)
-        item = df[(df.id_vivareal == '2454100925')]
+        item = df[(df.id_vivareal == id)]
         self.calculate_distance(df, item['lat'].values[0], item['lon'].values[0])
         df_filtered = df[(df.dist <= 1)].copy()
 

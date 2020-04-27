@@ -51,3 +51,8 @@ sshfs ubuntu@192.168.0.17:/home/ubuntu/apartamento/images /home/dzanardo/github/
 export DATABASE_APARTAMENT='{"server": "mongodb://localhost:27017/", "db": "apartamentdb"}'
 
 export IMAGES_FOLDER='/home/ubuntu/apartamento/images/'
+
+
+# flask
+
+flask run --host=0.0.0.0
